@@ -25,6 +25,7 @@ module HamlAction
   # Returns rendered haml file. If haml file specifies layout
   # this will also wrap wanted layout around it.
   def HamlAction.render_haml filename
+    @source_file = filename unless @source_file
     template = File.read(filename)
     haml_engine = Haml::Engine.new(template)
     if block_given?
@@ -57,8 +58,7 @@ module HamlAction
   # Returns ablsolute filename for relative used in
   # .haml files.
   def HamlAction.absolute_name filename
-    source_file = ENV['PATH_TRANSLATED']
-    filename = "#{File.dirname(source_file)}/#{filename}"
+    filename = "#{File.dirname(@source_file)}/#{filename}"
   end
 
 end
