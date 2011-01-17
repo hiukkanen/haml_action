@@ -33,13 +33,17 @@ module HamlAction
     else
       output = haml_engine.render
     end
-    if $layout
-      temp_layout = $layout
-      $layout = nil
+    if @layout
+      temp_layout = @layout
+      @layout = nil
       render_haml(absolute_name temp_layout) {output}
     else
       output
     end
+  end
+
+  def HamlAction.layout filename
+    @layout = filename
   end
 
   # Can be used from .haml files to require another haml file.
@@ -50,7 +54,7 @@ module HamlAction
   # Can be used from .haml file to specify layout in which
   # currently rendered .haml file belongs to.
   def layout filename
-    $layout = filename
+    HamlAction::layout filename
   end
 
   private
