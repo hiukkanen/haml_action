@@ -76,8 +76,10 @@ end
 
 # "Main method"
 # Ouputs rendered .haml file(s) with html headers.
-cgi = CGI.new
-cgi.out {
-  template = ENV['PATH_TRANSLATED']
-  HamlAction::render_haml template
-}
+if __FILE__ == $PROGRAM_NAME
+  cgi = CGI.new
+  cgi.out {
+    template = ENV['PATH_TRANSLATED']
+    HamlAction::render_haml template
+  }
+end
