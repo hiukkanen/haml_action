@@ -54,17 +54,6 @@ module HamlAction
     @layout = filename
   end
 
-  # Can be used from .haml files to require another haml file.
-  def h filename
-    HamlAction::render_haml HamlAction::absolute_name filename
-  end
-
-  # Can be used from .haml file to specify layout in which
-  # currently rendered .haml file belongs to.
-  def layout filename
-    HamlAction::layout filename
-  end
-
   private
 
   # Returns ablsolute filename for relative used in
@@ -76,6 +65,17 @@ module HamlAction
 end
 
 module HamlAction::Helpers
+
+  # Can be used from .haml files to require another haml file.
+  def h filename
+    HamlAction::render_haml HamlAction::absolute_name filename
+  end
+
+  # Can be used from .haml file to specify layout in which
+  # currently rendered .haml file belongs to.
+  def layout filename
+    HamlAction::layout filename
+  end
 
 end
 
