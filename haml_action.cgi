@@ -75,6 +75,10 @@ module HamlAction
 
 end
 
+module HamlAction::Helpers
+
+end
+
 # Includes h and layout to Haml Helpers
 module Haml
   module Helpers
