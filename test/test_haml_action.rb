@@ -14,4 +14,10 @@ class TestHamlAction < Test::Unit::TestCase
     assert_equal expected, output
   end
 
+  def test_should_get_correct_output_using_dl_entry
+    output = HamlAction::render_haml "./testfiles/dl_entry.haml"
+    expected = "<dt>CoffeeScript</dt>\n<ds>CoffeeScript is a little language that compiles into JavaScript</ds>\n"
+    assert_equal expected, output
+  end
+
 end
