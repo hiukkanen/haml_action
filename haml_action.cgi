@@ -77,6 +77,10 @@ module HamlAction::Helpers
     HamlAction::layout filename
   end
 
+  def dl_entry term, definition
+    HamlAction::render_string "%dt #{term}\n%ds #{definition}"
+  end
+
 end
 
 # Includes h and layout to Haml Helpers
