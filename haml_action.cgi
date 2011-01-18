@@ -27,11 +27,10 @@ module HamlAction
   def HamlAction.render_haml filename
     @source_file = filename unless @source_file
     template = File.read(filename)
-    haml_engine = Haml::Engine.new(template)
     if block_given?
-      output = haml_engine.render {yield}
+      output = render_string(template) {yield}
     else
-      output = haml_engine.render
+      output = render_string template
     end
     if @layout
       temp_layout = @layout
@@ -39,6 +38,15 @@ module HamlAction
       render_haml(absolute_name temp_layout) {output}
     else
       output
+    end
+  end
+
+  def HamlAction.render_string template
+    haml_engine = Haml::Engine.new(template)
+    if block_given?
+      output = haml_engine.render {yield}
+    else
+      output = haml_engine.render
     end
   end
 
